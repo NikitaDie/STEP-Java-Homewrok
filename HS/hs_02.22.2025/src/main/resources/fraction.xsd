@@ -1,0 +1,62 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/nikitadev/hs02222025"
+           xmlns:tns="http://example.com/nikitadev/hs02222025"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="fraction">
+        <xs:sequence>
+            <xs:element name="numerator" type="xs:int"/>
+            <xs:element name="denominator" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="isProperRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fraction" type="tns:fraction"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="isProperResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="reduceRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fraction" type="tns:fraction"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="reduceResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fraction" type="tns:fraction"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="operationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fraction1" type="tns:fraction"/>
+                <xs:element name="fraction2" type="tns:fraction"/>
+                <xs:element name="operationType" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="operationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result" type="tns:fraction"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

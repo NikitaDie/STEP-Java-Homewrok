@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>People List</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Search Form -->
+    <div class="mb-6">
+        <form th:action="@{/people}" method="get" class="flex space-x-4">
+            <input type="text" name="query" th:value="${query}" placeholder="Search by name..."
+                   class="w-full max-w-md px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Search</button>
+        </form>
+    </div>
+
+    <!-- People Table -->
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+            <tr>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Full Name</th>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Phone</th>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Email</th>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Actions</th>
+            </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+            <tr th:each="person : ${persons}">
+                <td class="px-6 py-4 text-sm text-gray-900" th:text="${person.fullName}"></td>
+                <td class="px-6 py-4 text-sm text-gray-900" th:text="${person.phone}"></td>
+                <td class="px-6 py-4 text-sm text-gray-900" th:text="${person.email}"></td>
+                <td class="px-6 py-4 text-sm space-x-2">
+                    <a th:href="@{/people/{id}(id=${person.id})}" class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700">View</a>
+                    <a th:href="@{/people/edit/{id}(id=${person.id})}" class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">Edit</a>
+                    <a th:href="@{/people/delete/{id}(id=${person.id})}" class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(persons)}">
+                <td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500">No people found.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

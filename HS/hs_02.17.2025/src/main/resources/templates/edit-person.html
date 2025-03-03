@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Person</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Edit Person</h2>
+    <form th:action="@{/people/edit/{id}(id=${person.id})}" th:object="${person}" method="post" class="space-y-4 max-w-lg">
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Full Name</label>
+            <input type="text" th:field="*{fullName}" class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <span th:if="${#fields.hasErrors('fullName')}"
+                  th:errors="*{fullName}"
+                  style="color: red;"></span>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Phone</label>
+            <input type="text" th:field="*{phone}" class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" th:field="*{email}" class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Blog URL</label>
+            <input type="text" th:field="*{blogUrl}" class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Notes</label>
+            <textarea th:field="*{notes}" class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+        </div>
+        <div class="flex space-x-4">
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Update</button>
+            <a href="/people" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">Cancel</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

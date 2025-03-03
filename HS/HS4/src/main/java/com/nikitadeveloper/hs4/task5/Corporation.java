@@ -5,7 +5,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Corporation {
     private final List<Employee> employees = new ArrayList<>();
@@ -36,7 +35,7 @@ public class Corporation {
             .filter(e -> e.getLastName().equalsIgnoreCase(lastName))
             .toList()
             .stream()
-            .collect(Collectors.collectingAndThen(Collectors.toList(), List::copyOf));
+            .toList();
     }
 
     public synchronized List<Employee> filterByAgeAndLastName(Character initial, Integer minAge) {
@@ -46,7 +45,7 @@ public class Corporation {
             .filter(e -> (minAge == null || e.getAge() >= minAge))
             .toList()
             .stream()
-            .collect(Collectors.collectingAndThen(Collectors.toList(), List::copyOf));
+            .toList();
     }
 
     public synchronized List<Employee> getAllEmployees() {

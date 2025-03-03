@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:hs="http://example.com/nikitadev/hs02222025">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hs:reduceRequest>
+         <hs:fraction>
+            <hs:numerator>4</hs:numerator>
+            <hs:denominator>8</hs:denominator>
+         </hs:fraction>
+      </hs:reduceRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
