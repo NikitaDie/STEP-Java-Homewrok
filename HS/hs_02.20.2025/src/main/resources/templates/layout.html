@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Book</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col bg-gray-100 font-sans">
+    <!-- Navigation Bar -->
+    <header class="bg-indigo-600 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Address Book</h1>
+            <nav class="space-x-4">
+                <a href="/people" class="hover:text-gray-200">People</a>
+                <a href="/people/add" class="bg-green-500 px-3 py-1 rounded hover:bg-green-600">Add Person</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 container mx-auto p-6">
+        <div layout:fragment="content">
+            <!-- This will be replaced by the content fragment from the content template -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4 mt-6">
+        <div class="container mx-auto text-center">
+            <p>© 2025 Address Book. Mykyta Kozachok.</p>
+        </div>
+    </footer>
+</body>
+</html>
