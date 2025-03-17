@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Stores List</title>
 </head>
 <body>
-$END$
+<div layout:fragment="content">
+    <!-- Search Form -->
+    <div class="mb-6">
+        <form th:action="@{/stores}" method="get" class="mb-6">
+            <div class="flex space-x-4">
+                <input type="text" name="search" th:value="${search}"
+                       placeholder="Search by name, category, or address"
+                       class="w-full border rounded p-2" />
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Stores Table -->
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+            <tr>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Name</th>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Address</th>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Category</th>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Actions</th>
+            </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+            <tr th:each="store : ${stores}">
+                <td class="px-6 py-4 text-sm text-gray-900" th:text="${store.name}"></td>
+                <td class="px-6 py-4 text-sm text-gray-900" th:text="${store.address}"></td>
+                <td class="px-6 py-4 text-sm text-gray-900" th:text="${store.category.getDisplayName()}"></td>
+                <td class="px-6 py-4 text-sm space-x-2">
+                    <a th:href="@{/stores/{id}(id=${store.id})}"
+                       class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700">View</a>
+                    <a th:href="@{/stores/{id}/edit(id=${store.id})}"
+                       class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">Edit</a>
+                    <form th:action="@{/stores/{id}/delete(id=${store.id})}" method="post" class="inline">
+                        <button type="submit"
+                                class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+                                onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(stores)}">
+                <td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500">No stores found.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>
