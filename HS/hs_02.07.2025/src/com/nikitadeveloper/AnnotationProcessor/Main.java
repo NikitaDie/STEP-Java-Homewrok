@@ -1,3 +1,5 @@
+package com.nikitadeveloper.AnnotationProcessor;
+
 import testObjects.Event;
 import testObjects.Order;
 import testObjects.Product;
@@ -11,6 +13,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        // Test 1: Valid User
         User validUser = new User("john_doe", Arrays.asList("john@example.com"), "john.doe@example.com");
         System.out.println("Valid User: " + Validator.validate(validUser));
 
@@ -39,7 +42,7 @@ public class Main {
         Order validOrder = new Order("ORD123", validItems, validUser);
         System.out.println("Valid Order: " + Validator.validate(validOrder));
 
-        // Test 8: Invalid Order (null orderId, empty items, invalid user)
+        // Test 8: Invalid Order (null orderId, empty items)
         Order invalidOrder = new Order(null, new ArrayList<>(), invalidUser);
         System.out.println("Invalid Order: " + Validator.validate(invalidOrder));
     }
