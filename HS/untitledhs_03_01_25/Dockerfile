@@ -1,7 +1,0 @@
-FROM postgres:latest
-
-ENV POSTGRES_USER=user
-ENV POSTGRES_PASSWORD=password
-ENV POSTGRES_DB=coffeehouse_db
-
-EXPOSE 5432
