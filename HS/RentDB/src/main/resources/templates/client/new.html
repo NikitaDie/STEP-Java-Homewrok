@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Database - Add New Client</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+<div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold">Rental Database - Add New Client</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <!-- Add Client Form -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-lg font-semibold text-gray-900 mb-4">Add New Client</h2>
+            <form th:action="@{/clients}" th:object="${client}" method="post" class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div>
+                    <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input type="text" id="fullName" th:field="*{fullName}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Enter full name" required>
+                    <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="text-red-600 text-sm"></span>
+                </div>
+                <div>
+                    <label for="contactPhone" class="block text-sm font-medium text-gray-700">Contact Phone</label>
+                    <input type="text" id="contactPhone" th:field="*{contactPhone}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Enter phone number">
+                    <span th:if="${#fields.hasErrors('contactPhone')}" th:errors="*{contactPhone}" class="text-red-600 text-sm"></span>
+                </div>
+                <div>
+                    <label for="desiredRooms" class="block text-sm font-medium text-gray-700">Desired Rooms</label>
+                    <input type="number" id="desiredRooms" th:field="*{desiredRooms}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Number of rooms">
+                    <span th:if="${#fields.hasErrors('desiredRooms')}" th:errors="*{desiredRooms}" class="text-red-600 text-sm"></span>
+                </div>
+                <div>
+                    <label for="desiredDistrict" class="block text-sm font-medium text-gray-700">Desired District</label>
+                    <input type="text" id="desiredDistrict" th:field="*{desiredDistrict}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Enter district">
+                    <span th:if="${#fields.hasErrors('desiredDistrict')}" th:errors="*{desiredDistrict}" class="text-red-600 text-sm"></span>
+                </div>
+                <div>
+                    <label for="desiredPrice" class="block text-sm font-medium text-gray-700">Desired Price</label>
+                    <input type="number" id="desiredPrice" th:field="*{desiredPrice}" step="0.01" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Max price">
+                    <span th:if="${#fields.hasErrors('desiredPrice')}" th:errors="*{desiredPrice}" class="text-red-600 text-sm"></span>
+                </div>
+                <div class="sm:col-span-2 flex justify-end space-x-4">
+                    <a th:href="@{/clients}" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                        Cancel
+                    </a>
+                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        Save Client
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+            <p class="text-sm">© 2025 Rental Database. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
